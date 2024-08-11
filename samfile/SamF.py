@@ -4,35 +4,35 @@ class SamfReader:
     """This class is just for put your variable into a samf file"""
 
     def read(self, path):
-        # Verificar se o arquivo tem a extensão '.fg'
+        # Check if the file is .samf
         if not path.endswith(".samf"):
             raise ValueError("This file is not a 'samf' file")
         
-        # Ler o conteúdo do arquivo
+        # Read the file content
         with open(path, "r") as file:
             content = file.read().strip().split("\n")
         
-        # Primeira linha é a seção
+        # The first line is the Section
         the_first = content[0]
         dict_ = {}
 
-        # Verificar e processar a seção
+        # Check and process the section
         if re.search(r"<.*>", the_first):
             key = the_first.strip("<>")
             dict_[key] = {}
             
-            # Processar cada linha após a seção
+            # Precess each line after the section process
             for line in content[1:]:
                 if "=" in line:
                     sub_key, sub_value = map(str.strip, line.split("=", 1))
                     
-                    # Converter valores numéricos para float
+                    # Convert the numeric values into a integer value
                     if sub_value.isnumeric():
                         sub_value = int(sub_value)
                     if sub_key.isnumeric():
                         sub_key = int(sub_key)
 
-                    # Adicionar ao dicionário
+                    # Put them in a dictionary
                     dict_[key][sub_key] = sub_value
 
                 else:
