@@ -3,7 +3,7 @@
 This python library going to read a .samf for you
 
 myfile.samf
-```r
+```text
 <Patterns>
 email = ^[a-zA-Z0-9_]+@[a-zA-Z0-9_]+\.[a-zA-Z0-9]{2,}$
 nome = ^[a-z]+S[0-9]$
